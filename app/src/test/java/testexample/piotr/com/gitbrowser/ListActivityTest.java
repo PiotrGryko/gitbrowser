@@ -43,7 +43,7 @@ public class ListActivityTest {
     @Test
     public void loadDetailsShouldStartNewActivity()
     {
-        activity.loadDetails(null);
+        activity.loadDetails(null,null);
         Intent startedIntent = shadowOf(activity).getNextStartedActivity();
         ShadowIntent shadowIntent = shadowOf(startedIntent);
         assertEquals("StartedActivity not match",DetailActivity.class,shadowIntent.getIntentClass());

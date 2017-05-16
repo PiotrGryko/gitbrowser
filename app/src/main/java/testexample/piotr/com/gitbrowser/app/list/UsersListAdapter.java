@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import testexample.piotr.com.gitbrowser.BR;
 import testexample.piotr.com.gitbrowser.R;
 import testexample.piotr.com.gitbrowser.app.model.ModelUser;
+import testexample.piotr.com.gitbrowser.databinding.RowUserBinding;
 
 /**
  * Created by piotr on 12/05/17.
@@ -23,7 +25,7 @@ import testexample.piotr.com.gitbrowser.app.model.ModelUser;
 public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.UserViewHolder> {
 
     public interface OnUserClickListener {
-        void onUserClick(ModelUser user);
+        void onUserClick(ModelUser user, ImageView image);
     }
 
     private ModelUser[] data;
@@ -50,12 +52,12 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
     }
 
     @Override
-    public void onBindViewHolder(UserViewHolder holder, final int position) {
+    public void onBindViewHolder(final UserViewHolder holder, final int position) {
         holder.viewDataBinding.setVariable(BR.user, data[position]);
         holder.viewDataBinding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onItemClickListener != null) onItemClickListener.onUserClick(data[position]);
+                if (onItemClickListener != null) onItemClickListener.onUserClick(data[position],holder.viewDataBinding.ivProfile);
             }
         });
     }
@@ -67,7 +69,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
 
     // inner class to hold a reference to each item of RecyclerView
     public static class UserViewHolder extends RecyclerView.ViewHolder {
-        private ViewDataBinding viewDataBinding;
+        private RowUserBinding viewDataBinding;
 
         public UserViewHolder(View itemLayoutView) {
             super(itemLayoutView);

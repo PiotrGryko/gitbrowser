@@ -1,5 +1,7 @@
 package testexample.piotr.com.gitbrowser.app.list;
 
+import android.widget.ImageView;
+
 import java.util.ArrayList;
 
 import testexample.piotr.com.gitbrowser.app.model.ModelUser;
@@ -12,7 +14,7 @@ public interface UsersListContract {
 
     interface View {
         void publishData(ModelUser[] users);
-        void loadDetails(ModelUser user);
+        void loadDetails(ModelUser user, ImageView image);
 
     }
 

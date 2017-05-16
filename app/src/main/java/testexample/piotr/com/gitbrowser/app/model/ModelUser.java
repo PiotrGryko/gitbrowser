@@ -7,13 +7,15 @@ import android.widget.ImageView;
 import com.google.gson.annotations.SerializedName;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
+
 import testexample.piotr.com.gitbrowser.R;
 
 /**
  * Created by piotr on 11/05/17.
  */
 
-public class ModelUser extends BaseObservable{
+public class ModelUser extends BaseObservable implements Serializable{
     @SerializedName("login")
     public String login;
     @SerializedName("id")

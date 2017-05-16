@@ -1,11 +1,15 @@
 package testexample.piotr.com.gitbrowser;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.transition.Explode;
 import android.util.Log;
+import android.view.Window;
+import android.widget.ImageView;
 
 import javax.inject.Inject;
 
@@ -33,6 +37,12 @@ public class ListActivity extends AppCompatActivity implements UsersListContract
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // inside your activity (if you did not enable transitions in your theme)
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+
+// set an exit transition
+        getWindow().setExitTransition(new Explode());
+
         activityListBinding = DataBindingUtil.setContentView(this, R.layout.activity_list);
         activityListBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         activityListBinding.recyclerView.setHasFixedSize(true);
@@ -44,8 +54,8 @@ public class ListActivity extends AppCompatActivity implements UsersListContract
         activityListBinding.recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new UsersListAdapter.OnUserClickListener() {
             @Override
-            public void onUserClick(ModelUser user) {
-                loadDetails(user);
+            public void onUserClick(ModelUser user, ImageView profile) {
+                loadDetails(user,profile);
             }
         });
 
@@ -59,8 +69,15 @@ public class ListActivity extends AppCompatActivity implements UsersListContract
     }
 
     @Override
-    public void loadDetails(ModelUser user) {
+    public void loadDetails(ModelUser user, ImageView image) {
         Intent intent = new Intent(this, DetailActivity.class);
-        startActivity(intent);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, image, "test");
+        Bundle bundle = new Bundle();
+        //bundle.putString("url",user.getImageUrl());
+        bundle.putSerializable("user",user);
+
+        intent.putExtras(bundle);
+        startActivity(intent, options.toBundle());
+        //startActivity(intent);
     }
 }
