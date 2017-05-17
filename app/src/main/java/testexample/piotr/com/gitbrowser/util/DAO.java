@@ -21,23 +21,24 @@ import testexample.piotr.com.gitbrowser.app.model.ModelUser;
 public class DAO {
 
 
-
     RequestQueue requestQueue;
     String baseUrl;
 
-    public DAO(RequestQueue requestQueue, String baseUrl)
-    {
-        this.requestQueue=requestQueue;
-        this.baseUrl=baseUrl;
+    public DAO(RequestQueue requestQueue, String baseUrl) {
+        this.requestQueue = requestQueue;
+        this.baseUrl = baseUrl;
 
     }
 
 
     public void loadUsers(Response.Listener<ModelUser[]> successListener, Response.ErrorListener errorListener) {
-        //Log.d("XXX","load user "+baseUrl +" "+requestQueue);
-        GsonRequest<ModelUser[]> request = new GsonRequest<ModelUser[]>(Request.Method.GET, baseUrl,ModelUser[].class, successListener, errorListener);
+        GsonRequest<ModelUser[]> request = new GsonRequest<ModelUser[]>(Request.Method.GET, baseUrl, ModelUser[].class, successListener, errorListener);
         requestQueue.add(request);
+    }
 
+    public void loadUserDetails(ModelUser user, Response.Listener<ModelUser> successListener, Response.ErrorListener errorListener) {
+        GsonRequest<ModelUser> request = new GsonRequest<ModelUser>(Request.Method.GET, user.getUrl(), ModelUser.class, successListener, errorListener);
+        requestQueue.add(request);
     }
 
 }

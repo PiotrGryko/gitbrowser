@@ -14,8 +14,8 @@ import testexample.piotr.com.gitbrowser.R;
 /**
  * Created by piotr on 11/05/17.
  */
+public class ModelUser extends BaseObservable implements Serializable {
 
-public class ModelUser extends BaseObservable implements Serializable{
     @SerializedName("login")
     public String login;
     @SerializedName("id")
@@ -57,11 +57,18 @@ public class ModelUser extends BaseObservable implements Serializable{
     @SerializedName("updated_at")
     String updated_at;
 
-    public String getImageUrl()
-    {
-        return imageUrl;
-    }
 
+    public String getImageUrl() {return imageUrl;}
+    public String getUrl() {return url;}
+    public String getName() {return name;}
+    public String getLocation() {return location;}
+    public String getType() {return type;}
+    public String getEmail() {return email;}
+    public String getBlog() {return blog;}
+    public int getPublicRepos() {return public_repos;}
+    public int getGists() {return public_gists;}
+    public int getFollowers() {return followers;}
+    public int getFollowing() {return following;}
     @BindingAdapter("imageUrl")
     public static void setImageUrl(ImageView view, String imageUrl) {
         Picasso.with(view.getContext())
@@ -69,6 +76,4 @@ public class ModelUser extends BaseObservable implements Serializable{
                 .placeholder(R.drawable.placeholder)
                 .into(view);
     }
-
-
 }

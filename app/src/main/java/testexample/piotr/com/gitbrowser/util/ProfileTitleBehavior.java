@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,10 +44,15 @@ public class ProfileTitleBehavior extends CoordinatorLayout.Behavior<TextView> {
 
         if (currentY < targetY)
             currentY = targetY;
+        //child.setTranslationX(-targetX/2*offset);
 
-        child.setX((1 - offset) * targetX);
+        //child.setX((1 - offset) * targetX);
         child.setY(currentY);
+        float scale = 1+offset/2;
+        if(scale<1) scale=1;
 
+        child.setScaleX(scale);
+        child.setScaleY(scale);
         return true;
     }
 }
