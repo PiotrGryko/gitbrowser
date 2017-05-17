@@ -33,6 +33,7 @@
                 <FrameLayout
                     android:id="@+id/fl"
                     android:layout_width="match_parent"
+                    android:background="@color/colorPrimary"
                     android:layout_height="200dp"
                     android:layout_gravity="bottom|center_horizontal"
                     app:layout_collapseMode="parallax"></FrameLayout>
@@ -61,13 +62,22 @@
         </android.support.v4.widget.NestedScrollView>
 
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:alpha="0"
-            android:id="@+id/toolbar"
             android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
             app:layout_anchor="@id/nsv"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark"></android.support.v7.widget.Toolbar>
+            app:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+            <Space
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize" />
+
+
+
+        </android.support.v7.widget.Toolbar>
 
         <ImageView
             android:id="@+id/iv"
@@ -77,7 +87,16 @@
             android:src="@drawable/placeholder"
             android:transitionName="test"
             app:imageUrl="@{user.imageUrl}"
-            app:layout_behavior=".util.ProfileImageBehaviour" />
+            app:layout_behavior=".util.ProfileImageBehavior" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            app:layout_behavior=".util.ProfileTitleBehavior"
+            android:text="@{user.login}"
+            android:textColor="#ffffff" />
 
 
     </android.support.design.widget.CoordinatorLayout>
