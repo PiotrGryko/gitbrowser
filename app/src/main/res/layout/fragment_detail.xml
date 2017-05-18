@@ -25,18 +25,34 @@
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
+                app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
 
-                <FrameLayout
-                    android:id="@+id/fl"
+
+                <ImageView
+                    android:id="@+id/iv"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:background="@color/colorPrimary"
-                    app:layout_collapseMode="parallax"></FrameLayout>
+                    android:layout_height="@dimen/profile_image_height"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/placeholder"
+                    android:transitionName="test"
+                    app:imageUrl="@{user.imageUrl}"
+                    />
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    app:contentScrim="?attr/colorPrimary"
+                    android:title="@{user.login}"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:gravity="center_vertical"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark">
+                </android.support.v7.widget.Toolbar>
+
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
@@ -308,42 +324,8 @@
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:alpha="0"
-            android:background="@color/colorPrimary"
-            android:gravity="center_vertical"
-            app:layout_anchor="@id/nsv"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-            <Space
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize" />
 
 
-        </android.support.v7.widget.Toolbar>
-
-        <ImageView
-            android:id="@+id/iv"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/placeholder"
-            android:transitionName="test"
-            app:imageUrl="@{user.imageUrl}"
-            app:layout_behavior=".util.ProfileImageBehavior" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="?attr/actionBarSize"
-            android:paddingLeft="10dp"
-            android:text="@{user.login}"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            app:layout_behavior=".util.ProfileTitleBehavior" />
 
 
     </android.support.design.widget.CoordinatorLayout>

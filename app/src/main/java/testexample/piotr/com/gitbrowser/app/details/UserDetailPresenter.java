@@ -27,17 +27,14 @@ public class UserDetailPresenter implements UserDetailContract.Presenter {
 
     @Override
     public void loadData(ModelUser user) {
-        Log.d("XXX", "load data detail presenter");
         dao.loadUserDetails(user, new Response.Listener<ModelUser>() {
             @Override
             public void onResponse(ModelUser response) {
-                Log.d("XXX", "load details " + response);
                 contractView.publishData(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("XXX", error.toString());
             }
         });
     }

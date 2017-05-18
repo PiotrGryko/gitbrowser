@@ -2,6 +2,7 @@ package testexample.piotr.com.gitbrowser.app.list;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,8 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
                 if (onItemClickListener != null) onItemClickListener.onUserClick(data[position],holder.viewDataBinding.ivProfile);
             }
         });
+        ViewCompat.setTransitionName(holder.viewDataBinding.ivProfile, String.valueOf(position) + "_image");
+
     }
 
     @Override

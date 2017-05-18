@@ -1,7 +1,7 @@
 package testexample.piotr.com.gitbrowser.app.list;
 
 import dagger.Component;
-import testexample.piotr.com.gitbrowser.ListActivity;
+import testexample.piotr.com.gitbrowser.MainActivity;
 import testexample.piotr.com.gitbrowser.data.component.DaoComponent;
 import testexample.piotr.com.gitbrowser.util.CustomScope;
 
@@ -12,5 +12,5 @@ import testexample.piotr.com.gitbrowser.util.CustomScope;
 @CustomScope
 @Component(dependencies = DaoComponent.class,modules = UsersListModule.class)
 public interface UsersListComponent {
-    void inject(ListActivity activity);
+    void inject(UsersListFragment fragment);
 }

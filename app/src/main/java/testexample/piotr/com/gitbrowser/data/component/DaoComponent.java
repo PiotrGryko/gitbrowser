@@ -3,7 +3,6 @@ package testexample.piotr.com.gitbrowser.data.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import testexample.piotr.com.gitbrowser.ListActivity;
 import testexample.piotr.com.gitbrowser.data.module.AppModule;
 import testexample.piotr.com.gitbrowser.data.module.DaoModule;
 import testexample.piotr.com.gitbrowser.util.DAO;
@@ -15,9 +14,9 @@ import testexample.piotr.com.gitbrowser.util.DAO;
 @Singleton
 @Component(modules = {AppModule.class,DaoModule.class})
 public interface DaoComponent {
-    //tell dagger that ListActivity has access to singletons
+    //tell dagger that MainActivity has access to singletons
     //dont use base classes
-    //void inject(ListActivity activity);
+    //void inject(MainActivity activity);
     //DAO needs to be exposed for UsersListComponent
     DAO dao();
 

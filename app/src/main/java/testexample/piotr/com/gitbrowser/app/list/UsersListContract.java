@@ -14,7 +14,7 @@ public interface UsersListContract {
 
     interface View {
         void publishData(ModelUser[] users);
-        void loadDetails(ModelUser user, ImageView image);
+        void showDetails(ModelUser user, ImageView image);
 
     }
 

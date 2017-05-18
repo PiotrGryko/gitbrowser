@@ -1,9 +1,7 @@
 package testexample.piotr.com.gitbrowser.app.details;
 
 import dagger.Component;
-import testexample.piotr.com.gitbrowser.DetailActivity;
 import testexample.piotr.com.gitbrowser.data.component.DaoComponent;
-import testexample.piotr.com.gitbrowser.data.module.DaoModule;
 import testexample.piotr.com.gitbrowser.util.CustomScope;
 
 /**
@@ -13,5 +11,5 @@ import testexample.piotr.com.gitbrowser.util.CustomScope;
 @CustomScope
 @Component(dependencies = DaoComponent.class, modules = UserDetailModule.class)
 public interface UserDetailComponent {
-    void inject(DetailActivity activity);
+    void inject(UserDetailFragment fragment);
 }
