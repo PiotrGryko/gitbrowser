@@ -6,10 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowIntent;
+import org.robolectric.shadows.support.v4.SupportFragmentTestUtil;
+
+import testexample.piotr.com.gitbrowser.app.list.UsersListFragment;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.robolectric.Shadows.shadowOf;
@@ -20,32 +24,30 @@ import static org.junit.Assert.*;
  */
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
-public class ListActivityTest {
+public class ListFragmentTest {
 
-    MainActivity activity;
+    private UsersListFragment usersListFragment;
 
     @Before
     public void setUp() {
-        activity = Robolectric.buildActivity(MainActivity.class).create().get();
+
+        usersListFragment = new UsersListFragment();
+        SupportFragmentTestUtil.startVisibleFragment(usersListFragment);
     }
 
     @Test
-    public void activityShouldNotBeNull() {
-        assertNotNull("activity is null!", activity);
+    public void fragmentShouldNotBeNull() {
+        assertNotNull("fragment is null!", usersListFragment);
     }
 
     @Test
     public void recyclerViewAdapterShouldBeSet() {
-        RecyclerView rv = (RecyclerView) activity.findViewById(R.id.recycler_view);
+        assertNotNull("fragment view is null!", usersListFragment.getView());
+        RecyclerView rv = (RecyclerView) usersListFragment.getView().findViewById(R.id
+                .recycler_view);
         assertNotNull("RecyclerView is null!", rv);
         assertNotNull("Adapter is not set!", rv.getAdapter());
     }
-    @Test
-    public void loadDetailsShouldStartNewActivity()
-    {
-        //activity.showDetails(null,null);
-        //Intent startedIntent = shadowOf(activity).getNextStartedActivity();
-        //ShadowIntent shadowIntent = shadowOf(startedIntent);
-        //assertEquals("StartedActivity not match",DetailActivity.class,shadowIntent.getIntentClass());
-    }
+
+
 }

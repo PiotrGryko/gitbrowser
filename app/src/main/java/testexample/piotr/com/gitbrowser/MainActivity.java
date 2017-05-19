@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
         if (savedInstanceState == null) {
             if (findViewById(R.id.fragment_list) == null)
                 getSupportFragmentManager().beginTransaction().add(R.id.fragments_container, new
