@@ -27,29 +27,30 @@ import testexample.piotr.com.gitbrowser.util.ProfileImageBehavior;
 /**
  * Created by piotr on 18/05/17.
  */
-@TargetApi(Build.VERSION_CODES.KITKAT)
-public class UserDetailFragment extends Fragment implements UserDetailContract.View{
+public class UserDetailFragment extends Fragment implements UserDetailContract.View {
 
     private FragmentDetailBinding fragmentDetailBinding;
     @Inject
     UserDetailPresenter userDetailPresenter;
 
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         DaggerUserDetailComponent.builder().daoComponent(((App) getActivity().getApplication())
-                .getDaoComponent
-                        ()).userDetailModule(new UserDetailModule(this)).build().inject(this);
+                .getDaoComponent()).userDetailModule(new UserDetailModule(this)).build().inject
+                (this);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
+        super.onViewCreated(view, savedInstanceState);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 
-        fragmentDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, parent, false);
+        fragmentDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail,
+                parent, false);
         Bundle bundle = getArguments();
         ModelUser user = (ModelUser) bundle.getSerializable("user");
         fragmentDetailBinding.setUser(user);
@@ -60,17 +61,6 @@ public class UserDetailFragment extends Fragment implements UserDetailContract.V
     @Override
     public void publishData(ModelUser user) {
 
-        fragmentDetailBinding.tvName.setText(user.getName());
-        fragmentDetailBinding.tvType.setText(user.getType());
-        fragmentDetailBinding.tvLocation.setText(user.getLocation());
-        fragmentDetailBinding.tvBlog.setText(user.getBlog());
-        fragmentDetailBinding.tvEmail.setText(user.getEmail());
-        fragmentDetailBinding.tvRepos.setText(Integer.toString(user.getPublicRepos()));
-        fragmentDetailBinding.tvGists.setText(Integer.toString(user.getGists()));
-        fragmentDetailBinding.tvFollowers.setText(Integer.toString(user.getFollowers()));
-        fragmentDetailBinding.tvFollowing.setText(Integer.toString(user.getFollowing()));
-
+        fragmentDetailBinding.setUser(user);
     }
-
-
 }
